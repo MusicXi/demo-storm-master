@@ -1,8 +1,6 @@
-package com.myron.storm.wordcount2.bolt;
+package com.myron.storm.wordcount2.kafka.bolt;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import com.myron.util.MapSort;
 import org.apache.storm.task.OutputCollector;
 import org.apache.storm.task.TopologyContext;
 import org.apache.storm.topology.IRichBolt;
@@ -11,7 +9,8 @@ import org.apache.storm.tuple.Fields;
 import org.apache.storm.tuple.Tuple;
 import org.apache.storm.tuple.Values;
 
-import com.myron.storm.wordcount2.util.MapSort;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**

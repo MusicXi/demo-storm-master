@@ -1,9 +1,8 @@
-package com.myron.storm.wordcount2;
+package com.myron.storm.wordcount2.kafka.topology;
 
-import com.myron.storm.wordcount2.bolt.PrintBolt;
-import com.myron.storm.wordcount2.bolt.WordCountBolt;
-import com.myron.storm.wordcount2.bolt.WordNormalizerBolt;
-import kafka.Kafka;
+import com.myron.storm.wordcount2.kafka.bolt.PrintBolt;
+import com.myron.storm.wordcount2.kafka.bolt.WordCountBolt;
+import com.myron.storm.wordcount2.kafka.bolt.WordNormalizerBolt;
 import org.apache.storm.Config;
 import org.apache.storm.LocalCluster;
 import org.apache.storm.StormSubmitter;
@@ -11,7 +10,6 @@ import org.apache.storm.kafka.*;
 import org.apache.storm.spout.SchemeAsMultiScheme;
 import org.apache.storm.topology.TopologyBuilder;
 import org.apache.storm.tuple.Fields;
-
 
 
 public class WordCountTopology {

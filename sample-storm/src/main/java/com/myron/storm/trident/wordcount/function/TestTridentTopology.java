@@ -1,5 +1,7 @@
 package com.myron.storm.trident.wordcount.function;
 
+import org.apache.storm.Config;
+import org.apache.storm.LocalCluster;
 import org.apache.storm.trident.TridentState;
 import org.apache.storm.trident.TridentTopology;
 import org.apache.storm.trident.operation.builtin.Count;
@@ -10,7 +12,7 @@ import org.apache.storm.tuple.Values;
 
 public class TestTridentTopology {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		
 		//This spout cycles through that set of sentences over and over to produce the sentence stream
 		FixedBatchSpout spout = new FixedBatchSpout(new Fields("sentence"), 3,
@@ -24,12 +26,17 @@ public class TestTridentTopology {
 		TridentTopology topology = new TridentTopology();     
 		
 		//Input sources can also be queue brokers like Kestrel or Kafka.
-		TridentState wordCounts = 
-		     topology.newStream("spout1", spout)
+		TridentState wordCounts = topology.newStream("spout", spout)
 		       .each(new Fields("sentence"), new Split(), new Fields("word"))
 		       .groupBy(new Fields("word"))
 		       .persistentAggregate(new MemoryMapState.Factory(), new Count(), new Fields("count"))                
 		       .parallelismHint(6);
+
+		Config conf = new Config();
+		LocalCluster cluster = new LocalCluster();
+		cluster.submitTopology("cdc", conf, topology.build());
+		Thread.sleep(200000);
+		cluster.shutdown();
 
 	}
 

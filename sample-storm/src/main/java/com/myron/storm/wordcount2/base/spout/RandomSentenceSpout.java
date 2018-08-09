@@ -1,4 +1,4 @@
-package com.myron.storm.wordcount2.spout;
+package com.myron.storm.wordcount2.base.spout;
 import java.util.Map;
 import java.util.Random;
 

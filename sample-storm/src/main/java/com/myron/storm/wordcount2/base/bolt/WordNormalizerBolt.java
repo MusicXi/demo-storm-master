@@ -1,4 +1,4 @@
-package com.myron.storm.wordcount2.bolt;
+package com.myron.storm.wordcount2.base.bolt;
 
 import java.util.Map;
 

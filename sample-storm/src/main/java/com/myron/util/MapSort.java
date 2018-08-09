@@ -1,4 +1,4 @@
-package com.myron.storm.wordcount2.util;
+package com.myron.util;
 
 import java.util.Collections;
 import java.util.Comparator;
